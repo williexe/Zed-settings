@@ -1,2 +1,2 @@
 # Zed-settings
-Settings for Zed
+Settings with Zed aswell as snippets
