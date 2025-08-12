@@ -1,0 +1,821 @@
+
+{
+	// Place your global snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders.
+	// Placeholders with the same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"scope": "javascript,typescript",
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+	"nwkOnline_noty":
+	{
+		"prefix" :"nwkOnline_noty",
+		"body":
+		[
+			"\\$fout ='day';",
+			"\\$noty['message'] = $fout;",
+			"\\$noty['type'] = 'error';",
+			"\\$noty['time'] = 'medium';",
+			"\\$nwkFramework->showNoty(\\$noty);",
+		],
+		"description": "NOTY for nwk online"
+	},
+"nwkONline_table":
+{
+	"prefix": "nwk_tablebuilder",
+	"body" :[
+
+
+"<script>",
+"var table;",
+"$(function() { ",
+"// $('.carousel').flickity({",
+"//     // options",
+"//     cellAlign: 'center',",
+"//     // contain: true,",
+"//     // wrapAround: true,",
+"//     // initialIndex: 50,",
+"// });",
+"//define data",
+"var tabledata = <?= json_encode(//$DataArr); ?>",
+"",
+"//define table",
+" table = new Tabulator('#leweringsTable', {",
+"data:tabledata,",
+"paginationSize:10,",
+"layout:'fitColumns',",
+"index:'Opdrag',",
+"selectable: 1,",
+"responsiveLayout:'hide',",
+"pagination:'local',",
+"paginationSize:6,",
+"rowSeperatorColor:'#f1f1f1',",
+"rowHoverBackground:'#f1f1f1',",
+"",
+"paginationSizeSelector:[10,20,50],",
+"columns: [",
+"genColumn('OBNommer', '<?=tgv('lblOBNommer')?>' ,'center',0,{minWidth:120}),",
+"genColumn('Opdrag', '<?=tgv('lblOpdrag')?>','center',0),",
+"genColumn('KlasGrd', '<?=tgv('')?>','center',0),",
+"genColumn('Bedryfspunt', '<?=tgv('lblSilo')?>','center',3),",
+"genColumn('Kontraknommer', '<?=tgv('lblKontrak')?>','left',3,{minWidth:170}),",
+"genColumn('Net_Massa', '<?=tgv('lblNetMassa')?>','center',1),",
+"genColumn('Vog', '<?=tgv('lblVog')?>','center',3),",
+"genColumn('Massa', '<?=tgv('lblMassa')?>','center',3),",
+"genColumn('OBDatum', '<?=tgv('lblDatum')?>','center',3,{}),",
+"genColumn('TydIN', '<?=tgv('lblTyd')?>','center',1,{minWidth:100}),",
+"genColumn('SkemaBeskrywing', '<?=tgv('lblSkema')?>','center',3),",
+"genColumn('Voertuig1', '<?=tgv('lblVoertuig')?>','center',1),",
+"genColumn('Naam', '<?= tgv('naam_van_lid') ?>', 'left',2),",
+"",
+"],",
+"});",
+"table.on('rowClick', function(e, row){",
+"//e - the click event object",
+"//row - row component",
+"$carousel = $('.carousel').flickity();",
+"$('.ui.modal').modal('show');",
+"setTimeout(function(){",
+"$carousel.flickity('resize');",
+"$carousel.flickity( 'selectCell', '.opdrag' + row._row.data.Opdrag );",
+"},100);",
+"});",
+"table.on('rowSelected', function(row){",
+"console.log('🚀 SELECTED ~ table.on ~ row', row)",
+"var index = row.getIndex();",
+"console.log('🚀 ~ file: testTable.php ~ line 492 ~ table.on ~ index', index);",
+"var rowNext = row.getNextRow();",
+"console.log('🚀 ~ file: testTable.php ~ line 495 ~ table.on ~ rowNext', rowNext)",
+"var rowPrev = row.getPrevRow();",
+"console.log('🚀 ~ file: testTable.php ~ line 497 ~ table.on ~ rowPrev', rowPrev)",
+"});",
+"});",
+"</script>",
+	],
+	"description": "Create table for online"
+
+
+} ,
+	"ListingsDepart": {
+		"prefix": "listingsdet",
+		"body": [
+			"\\$form->add('label', '$label_name', '$control_name', \\$translation->getValue('$translation'));",
+			"\\$obj = \\$form->add('radios', '$control_name', $options);",
+			"\\$obj->set_attributes(array(",
+			"\t'class' => 'input-field control'",
+			"));"
+		],
+		"description": "Create listingsdet buttons"
+	},
+	"ZebraForm radio buttons": {
+		"prefix": "nwk-radio",
+		"body": [
+			"\\$form->add('label', '$label_name', '$control_name', \\$translation->getValue('$translation'));",
+			"\\$obj = \\$form->add('radios', '$control_name', $options);",
+			"\\$obj->set_attributes(array(",
+			"\t'class' => 'input-field control'",
+			"));"
+		],
+		"description": "Create ZebraForm radio buttons"
+	},
+	"ZebraForm  note": {
+		"prefix": "nwk-note",
+		"body": [
+			"\\$form->add('note', 'note_name', 'control_name', \\$translation->getValue('$translation'));",
+		],
+		"description": "Create ZebraForm note"
+	},
+	"MysqliDb new": {
+		"prefix": "nwk-db-new",
+		"body": [
+			"\\$db =  new MysqliDb('Database_name');",
+		],
+		"description": "Create MysqliDb connection"
+	},
+	"MysqliDb where": {
+		"prefix": "nwk-db-where",
+		"body": [
+			"\\$db->where('field','value');",
+		],
+		"description": "find a row in a table"
+	},
+	"MysqliDb get": {
+		"prefix": "nwk-db-get",
+		"body": [
+			"\\$result = \\$db->get('table_name');",
+		],
+		"description": "Get data"
+	},
+	"MysqliDb getOne": {
+		"prefix": "nwk-db-getOne",
+		"body": [
+			" \\$result = \\$db->getOne('table_name');",
+		],
+		"description": "Get the first record only"
+	},
+	"MysqliDb insert": {
+		"prefix": "nwk-db-insert",
+		"body": [
+			"if (!\\$db->insert('Table_name', \\$data)) {",
+			"\\$db->rollback();",
+			"\\$boodskap =  \\$translation->getValue('errFoutSkepKontrole', 'E');",
+			"\\$noty['message']  =  \\$translation->getValue('errFoutDB', 'E') . ' ' . \\$boodskap;",
+			"\\$noty['type']     = 'error';",
+			"\\$noty['timeout']     = false;",
+			"\\$noty['modal']     = 'true';",
+			"\\$noty['position']     = 'top';",
+			"\\$noty['type']     = 'error';",
+			"\\$form->show_noty(\\$noty);",
+			"exit;",
+			"} else {",
+			"\\$db->commit();",
+			"}"
+		],
+		"description": "Insert a record"
+	},
+	"MysqliDb insertMulti": {
+		"prefix": "nwk-db-insertMulti",
+		"body": [
+			"if (!\\$db->insertMulti('Table_name', \\$data)) {",
+			"\\$db->rollback();",
+			"\\$boodskap =  \\$translation->getValue('errFoutSkepKontrole', 'E');",
+			"\\$noty['message']  =  \\$translation->getValue('errFoutDB', 'E') . ' ' . \\$boodskap;",
+			"\\$noty['type']     = 'error';",
+			"\\$noty['timeout']     = false;",
+			"\\$noty['modal']     = 'true';",
+			"\\$noty['position']     = 'top';",
+			"\\$noty['type']     = 'error';",
+			"\\$form->show_noty(\\$noty);",
+			"exit;",
+			"} else {",
+			"\\$db->commit();",
+			"}"
+		],
+		"description": "insert Multipul record"
+	},
+	"MysqliDb update": {
+		"prefix": "nwk-db-update",
+		"body": [
+			"if (!\\$db->update('Table_name', \\$data)) {",
+			"\\$db->rollback();",
+			"\\$boodskap =  \\$translation->getValue('errFoutSkepKontrole', 'E');",
+			"\\$noty['message']  =  \\$translation->getValue('errFoutDB', 'E') . ' ' . \\$boodskap;",
+			"\\$noty['type']     = 'error';",
+			"\\$noty['timeout']     = false;",
+			"\\$noty['modal']     = 'true';",
+			"\\$noty['position']     = 'top';",
+			"\\$noty['type']     = 'error';",
+			"\\$form->show_noty(\\$noty);",
+			"exit;",
+			"} else {",
+			"\\$db->commit();",
+			"}"
+		],
+		"description": "update Multipul record or one depending on the where"
+	},
+	"ZebraForm checkbox": {
+		"prefix": "nwk-checkbox",
+		"body": [
+			"\\$obj = \\$form->add('checkbox', '$control_name', '$value');"
+		],
+		"description": "Create ZebraForm checkbox control"
+	},
+	"ZebraForm checkbox2": {
+		"prefix": "nwk-checkbox2",
+		"body": [
+			"\\$obj = \\$form->add('checkbox2', '${1:control_name}', '${2:value}', \\$translation->getValue('${3:translation}'));"
+		],
+		"description": "Create ZebraForm checkbox2 control"
+	},
+	"ZebraForm date": {
+		"prefix": "nwk-date",
+		"body": [
+			"\\$form->add('label', '$label_name', '$control_name', \\$translation->getValue('$translation'));",
+			"\\$obj = \\$form->add('date', '$control_name', date('Ymd'));",
+			"\\$obj->format('Ymd');",
+			"\\$obj->set_rule(array(",
+			"\t'date' =>  array('error', \\$translation->getValue('errDate')),",
+			"));",
+		],
+		"description": "Create ZebraForm date control"
+	},
+	"ZebraForm text": {
+		"prefix": "nwk-text",
+		"body": [
+			"\\$form->add('label', '$label_name', '$control_name', \\$translation->getValue('$translation'));",
+			"\\$obj = \\$form->add('text', '$control_name');",
+			"\\$obj->set_attributes(array(",
+			"\t'class' => 'input-field control form-control',",
+			"));"
+		],
+		"description": "Create ZebraForm text control"
+	},
+	"ZebraForm select": {
+		"prefix": "nwk-select",
+		"body": [
+			"\\$form->add('label', '$label', '$control_name', \\$translation->getValue('$translation'));",
+			"\\$obj = \\$form->add('select', '$control_name');",
+			"\\$obj->add_options($options);",
+			"\\$obj->set_attributes(array(",
+			"\t'class' => 'input-field control form-control',",
+			"));"
+		],
+		"description": "Create ZebraForm select control"
+	},
+	"ZebraForm button": {
+		"prefix": "nwk-button",
+		"body": [
+			"\\$obj = \\$form->add('button', '${1:control_name}', '<span class=\"fa fa-${2:icon}\"></span> '.\\$translation->getValue('${3:translation}'));",
+			"\\$obj->set_attributes(array(",
+			"\t'class' => 'btn btn-${4|success,warning,info,danger|}',",
+			"\t'onclick' => '$function_name',",
+			"));"
+		],
+		"description": "Create ZebraForm button control"
+	},
+	"ZebraForm spam filter": {
+		"prefix": "nwk-spam-filter",
+		"body": [
+			"\\$obj->disable_spam_filter();"
+		],
+		"description": "Disable ZebraForm's spam filter"
+	},
+	"ZebraForm case": {
+		"prefix": "nwk-case",
+		"body": [
+			"\\$obj->change_case('upper');"
+		],
+		"description": "Change case of ZebraForm control"
+	},
+	"ZebraForm set attributes": {
+		"prefix": "nwk-attributes",
+		"body": [
+			"\\$obj->set_attributes(array(",
+			"\t$0",
+			"));"
+		],
+		"description": "ZebraForm set attributes"
+	},
+	"ZebraForm autofocus attribute": {
+		"prefix": "nwk-autofocus",
+		"body": [
+			"'autofocus' => 'autofocus',"
+		],
+		"description": "ZebraForm autofocus attribute"
+	},
+	"ZebraForm reaonly attribute": {
+		"prefix": "nwk-readonly",
+		"body": [
+			"'readonly' => 'readonly',"
+		],
+		"description": "ZebraForm readonly attribute"
+	},
+	"ZebraForm form control attribute": {
+		"prefix": "nwk-form-control",
+		"body": [
+			"'class' => 'input-field control form-control',",
+		],
+		"description": "ZebraForm form control attribute"
+	},
+	"ZebraForm onChange attribute": {
+		"prefix": "nwk-onchange",
+		"body": [
+			"'onchange' => '$function_name',"
+		],
+		"description": "ZebraFrom onChange attribute"
+	},
+	"ZebraForm onClick attribute": {
+		"prefix": "nwk-onclick",
+		"body": [
+			"'onclick' => '$function_name',"
+		],
+		"description": "ZebraFrom onClick attribute"
+	},
+	"ZebraForm checked attribute": {
+		"prefix": "nwk-checked",
+		"body": [
+			"'checked' => '${1|true,false|}',"
+		],
+		"description": "ZebraFrom checked attribute"
+	},
+	"ZebraForm set rule": {
+		"prefix": "nwk-rule",
+		"body": [
+			"\\$obj->set_rule(array(",
+			"\t$0",
+			"));"
+		],
+		"description": "ZebraForm setRule attribute"
+	},
+	"ZebraForm number rule": {
+		"prefix": "nwk-number",
+		"body": [
+			"'number' => array('', 'error', \\$translation->getValue('errNumeries')),"
+		],
+		"description": "ZebraForm number rule"
+	},
+	"ZebraForm required rule": {
+		"prefix": "nwk-required",
+		"body": [
+			"'required' => array('error', \\$translation->getValue('errRequired')),"
+		],
+		"description": "ZebraForm required rule"
+	},
+	"ZebraForm length rule": {
+		"prefix": "nwk-length",
+		"body": [
+			"'length' => array($start_length, $end_lenght, 'error', \\$translation->getValue('errLength')),",
+		],
+		"description": "ZebraFrom length rule"
+	},
+	"ZebraForm dependency rule": {
+		"prefix": "nwk-dependency",
+		"body": [
+			"'dependencies' => array(array('$control_name' => $trigger_val), '$calback_name, $calback_param'),"
+		],
+		"description": "ZebraFrom dependency rule"
+	},
+	"Template": {
+		"prefix": "willie-template",
+		"body": [
+			"require_once(\\$_SERVER['DOCUMENT_ROOT'] .'/nwk/Language/Language.class.php');",
+			"\\$translation = Language::start();",
+			"echo (isset(\\$zf_error) ? \\$zf_error : (isset(\\$error) ? \\$error : ''));",
+			"?>",
+			"<div class=\"container-fluid\">",
+			"\t<div class=\"row\">",
+			"\t\t<i style=\"float: right; color: #AFAFAF\" class=\"fa fa-info-circle\" title=\"",
+			"PHP:",
+			"$php_programs",
+			"",
+			"NATURAL:",
+			"$natural_programs",
+			"",
+			"WSDL:",
+			"$wsdl\"",
+			"\t\t></i>",
+			"\t\t<fieldset>",
+			"\t\t\t<legend><?php echo \\$translation->getValue('$translation');?></legend>",
+			"\t\t\t<div class=\"row\">",
+			"\t\t\t\t<div class=\"col-sm-2 col-md-2 col-lg-2\"><?php echo $label_name;?></div>",
+			"\t\t\t\t<div class=\"col-sm-3 col-md-3 col-lg-3\"><?php echo $control_name;?></div>",
+			"\t\t\t</div>",
+			"\t\t</fieldset>",
+			"\t</div>",
+			"</div>"
+		],
+		"description": "Create template for ZebraForm"
+	},
+	"Class": {
+		"prefix": "nwk-class",
+		"body": [
+			"class $class_name {",
+			"\tprivate \\$fout, \\$data, \\$translation;",
+			"",
+			"\tfunction __construct() {",
+			"\t\trequire_once(\\$_SERVER['DOCUMENT_ROOT'] .'/nwk/Language/Language.class.php');",
+			"\t\t\\$this->translation = Language::start();",
+			"",
+			"\t\t\\$wsdl = '$wsdl';",
+			"\t\t\\$wsdl_pad = 'http://'.\\$_SERVER['HTTP_HOST'].':10010/wsstack/services/'.\\$wsdl.'.wsdl?';",
+			"",
+			"\t\trequire_once(\\$_SERVER['DOCUMENT_ROOT'].'/nwk/config.php');",
+			"\t\t\\$this->client = new client(\\$wsdl_pad, \\$wsdl);",
+			"",
+			"\t\t\\$this->data = array();",
+			"\t\t\\$this->data['_SOEK_VELD'] = '';",
+			"\t\t\\$this->data['_SOEK_WAARDE'] = '';",
+			"\t\t\\$this->data['_FOUT'] = '';",
+			"\t\t\\$this->data['_VELD'] = '';",
+			"\t\t\\$this->data['_S'] = '';",
+			"",
+			"\t\t\\$this->resetFout();",
+			"\t}",
+			"",
+			"\t/**",
+			"\t * Herstel fout-veranderlike na null",
+			"\t */",
+			"\tprivate function resetFout() {",
+			"\t\t\\$this->fout = null;",
+			"\t}",
+			"",
+			"\t/**",
+			"\t * Kry die fout-veranderlike",
+			"\t * ",
+			"\t * @return string",
+			"\t */",
+			"\tpublic function kryFout() {",
+			"\t\treturn \\$this->fout;",
+			"\t}",
+			"",
+			"\t/**",
+			"\t * Roep 'n Natural program",
+			"\t * ",
+			"\t * @param  string    \\$program        die program om te roep",
+			"\t * @return stdClass",
+			"\t * ",
+			"\t */",
+			"\tpublic function roepNat(\\$program) {",
+			"\t\t\\$this->resetFout();",
+			"",
+			"\t\ttry {",
+			"\t\t\t\\$resultaat = \\$this->client->callFunction(\\$program, \\$this->data);",
+			"",
+			"\t\t\tif (!empty(\\$resultaat->ErrorValue)) {",
+			"\t\t\t\tthrow new NaturalException('NOTY', \\$resultaat->ErrorValue);",
+			"\t\t\t} else if (!empty(\\$resultaat->faultstring)) {",
+			"\t\t\t\tthrow new NaturalException('NOTY', \\$resultaat->faultstring);",
+			"\t\t\t} else if (\\$resultaat->_S == 'N' || !empty(\\$resultaat->_FOUT)) {",
+			"\t\t\t\t\\$fout = !empty(\\$resultaat->_FOUT) ? \\$resultaat->_FOUT : 'errOnverwagteFout';",
+			"\t\t\t\t\\$veld = !empty(\\$resultaat->_VELD) ? \\$resultaat->_VELD : 'NOTY';",
+			"\t\t\t\tthrow new NaturalException(\\$veld, \\$fout);",
+			"\t\t\t} ",
+			"\t\t} catch (NaturalException \\$e) {",
+			"\t\t\t\\$this->fout['BOODSKAP'] = \\$e->getVeld().': '.\\$this->translation->getValue(\\$e->getFout()).' ('.\\$e->getFile().' - '.\\$e->getLine().')';",
+			"\t\t\t\\$this->fout['SLEUTEL'] = \\$e->getFout();",
+			"\t\t} finally {",
+			"\t\t\treturn \\$resultaat;",
+			"\t\t}",
+			"\t}",
+			"}",
+		],
+		"description": "Create class"
+	},
+	"ZebraForm attach tip": {
+		"prefix": "nwk-attach-tip",
+		"body": [
+			"\\$form->fout('${1:field}', \\$translation->getValue('${2:translation}'), '${3:template}');"
+		],
+		"description": "ZebraForm attach tip on field"
+	},
+	"ZebraForm next page": {
+		"prefix": "nwk-next-page",
+		"body": [
+			"\\$parms = array();",
+			"\\$form->next_page('${1:url_of_page}',\\$parms);"
+		],
+		"description": "ZebraForm redirect to new page with parameters passed with GET"
+	},
+	"Show Noty wrapper": {
+		"prefix": "nwk-noty-wrapper",
+		"body": [
+			"function $function_name(\\$$message, \\$$type, \\$$timeout, \\$$exit = false) {",
+			"\tglobal \\$form;",
+			"",
+			"\t\\$noty = [];",
+			"\t\\$noty['message'] = \\$$message;",
+			"\t\\$noty['position'] = 'top';",
+			"\t\\$noty['timeout'] = \\$$timeout;",
+			"\t\\$noty['modal'] = true;",
+			"\t\\$noty['type'] = \\$$type;",
+			"\t\\$form->show_noty(\\$noty);",
+			"",
+			"\tif (\\$$exit) {",
+			"\t\texit;",
+			"\t}",
+			"}"
+		],
+		"description": "A wrapper for the show_noty-function"
+	},
+	"Natural call": {
+		"prefix": "nwk-natural-call",
+		"body": [
+			"try {",
+			"\t\\$wsdl = \"WSDL\";",
+			"\t\\$program = \"NAT\";",
+			"\t\\$wsdl_pad = 'http://'.\\$_SERVER['HTTP_HOST'].':10010/wsstack/services/'.\\$wsdl.'.wsdl?';",
+			"",
+			"\trequire_once(\\$_SERVER['DOCUMENT_ROOT'].'/nwk/config.php');",
+			"\t\\$this->client = new client(\\$wsdl_pad, \\$wsdl);",
+			"",
+			"\t\\$data = [];",
+			"\t\\$data['_FOUT'] = '';",
+			"\t\\$data['_VELD'] = '';",
+			"\t\\$data['_EVENT'] = '';",
+			"\t\\$data['_S'] = '';",
+			"",
+			"\t\\$resultaat = \\$client->callFunction(\\$program, \\$data);",
+			"\t\\$veld = (!empty(\\$resultaat->_VELD)) ? \\$resultaat->_VELD : '_NOTY';",
+			"",
+			"\t//\\$DEBUG->debug(\\$resultaat,true);",
+			"",
+			"\tif (!empty(\\$resultaat->ErrorValue)) {",
+			"\t\tthrow new NaturalException(\\$veld, \\$resultaat->ErrorValue);",
+			"\t} else if (!empty(\\$resultaat->faultstring)) {",
+			"\t\tthrow new NaturalException(\\$veld, \\$resultaat->faultstring);",
+			"\t} else if ((!empty(\\$resultaat->_S) && \\$resultaat->_S == 'N') || !empty(\\$resultaat->_FOUT)) {",
+			"\t\t\\$fout = !empty(\\$resultaat->_FOUT) ? \\$translation->getValue(\\$resultaat->_FOUT) : \\$translation->getValue('errOnverwagteFout');",
+			"\t\tthrow new NaturalException(\\$veld, \\$fout);",
+			"\t} else {",
+			"",
+			"\t}",
+			"} catch (NaturalException \\$e) {",
+			"\t\\$error = \\$e->getVeld().': '.\\$e->getFout().' ('.\\$e->getFile().' - '. \\$e->getLine().')';",
+			"}"
+		],
+		"description": "Natural call with error handling"
+	},
+	"pre_debug": {
+		"prefix": "pre-debug",
+		"body": [
+			"echo '<pre>';",
+			"print_r(\\$result);",
+			"echo '</pre>';",
+		],
+	},
+	"nwk-assign": {
+		"prefix": "nwk-assign",
+		"body": [
+			"\\$form->assign('assign_naam', $assign_value);",
+		],
+	},
+	"nwk-hidden": {
+		"prefix": "nwk-hidden",
+		"body": [
+			"\\$form->add('hidden', 'Hidden_name', 'Hidden_Value');",
+		],
+	},
+	"date": {
+		"prefix": "nwk-date",
+		"body": [
+			"\\$form->add('label', '$label_name', '$control_name', \\$translation->getValue('$translation'));",
+			"\\$obj = \\$form->add('date', '$control_name', date('Ymd'));",
+			"\\$obj->format('Ymd');",
+			"\\$obj->direction(true);",
+			"\\$obj->strict(true);",
+			"\\$obj->show_clear_date(false);",
+			"\\$obj->pair('_control_date_2');",
+			"\\$obj->set_rule(array(",
+			"\t'date' =>  array('error', \\$translation->getValue('errDate')),",
+			"));",
+		],
+	},
+	"close_colorbox_iframe_parent_reload": {
+		"prefix": "nwk-close_colorbox_iframe_parent_reload",
+		"body": [
+			"\\$form->close_colorbox_iframe_parent_reload(2000);",
+		],
+	},
+	"Sort_hand_if": {
+		"prefix": "nwk-if",
+		"body": [
+			"(!empty(\\$_REQUEST[''])) ? \\$_REQUEST[''] : '';"
+		],
+	},
+	"upload": {
+		"prefix": "nwk-upload",
+		"body": [
+			"\\$form->add('label', '$label_name', '_UPLOADS', \\$translation->getValue('$translation'));",
+			"\\$obj = \\$form->add('multiplefile', '_UPLOADS');",
+			"\\$obj->set_rule(array(",
+			"\t'upload'   => array('stawende_doks', false, 'error',  \\$translation->getValue('errUpload')),",
+			"\t 'maxfiles' => array(50, 'error',  \\$translation->getValue('lblMaxFiles#50')),",
+			"\t'required' => array('error',  \\$translation->getValue('errRequired'))",
+			"));",
+		],
+	},
+	"MysqliDb in": {
+		"prefix": "nwk-db-in",
+		"body": [
+			"\\$db->where(`(field IN('Value1','Value2'))`);",
+		],
+		"description": "Create MysqliDb connection"
+	},
+	"Upload in": {
+		"prefix": "nwk-db-in",
+		"body": [
+			"\\$db->where(`(field IN('Value1','Value2'))`);",
+
+		],
+		"description": "Create MysqliDb connection"
+	},
+
+	"pre_debugtest": {
+		"prefix": "pre_debugtest",
+		"body": [
+			"echo '<pre>';",
+			"print_r(\\$value);",
+			"echo '</pre>';"
+		],
+		"description": "debug php_programs"
+	},
+	"Salmeeseverthing":{
+		"prefix": "Salmeeseverthing",
+		"body": [
+		"require_once \\$_SERVER['DOCUMENT_ROOT'] . '/SERVICES/SALMEES/srv_sal_001_S_srv.php';",
+		"\\$POSTE = \\$SALMEES->krySalmeesPosnommersAlles();",
+		"foreach (\\$POSTE as \\$pers => \\$value) {",
+		"\\$naam = \\$value->_SAL_NOEM_NAAM . ' ' . \\$value->_SAL_NAAM;",
+				"if (\\$value->_SAL_NOEM_NAAM == '') {",
+					"\\$naam = \\$value->_SAL_1STE_NAAM . ' ' . \\$value->_SAL_NAAM;",
+				"}",
+				"\\$personalno[\\$value->_SAL_VERWYS] = \\$value->_SAL_NAAM . ' ' . \\$value->_SAL_1STE_NAAM;",
+		"}",
+		],
+		"description": "all salmees info"
+
+	},
+	"SalmeeseverthingWithVacant":{
+		"prefix": "Salmeeseverthing",
+		"body": [
+		"require_once \\$_SERVER['DOCUMENT_ROOT'] . '/SERVICES/SALMEES/srv_sal_001_S_srv.php';",
+		"\\$POSTE = \\$SALMEES->krySalmeesPoste();",
+		"foreach (\\$POSTE as \\$pers => \\$value) {",
+
+		"if(\\$pers->_SAL_VERWYS == 'Vacant')",
+        "\\{",
+		"\\$personalno[\\$pers->_SAL_POSNR] = \\$pers->_SAL_POSTITEL;",
+		"}",
+		"else",
+		"{",
+		"\\$naam = \\$pers->_SAL_NOEM_NAAM . ' ' . \\$pers->_SAL_NAAM;",
+				"if (\\$pers->_SAL_NOEM_NAAM == '') {",
+					"\\$naam = \\$pers->_SAL_1STE_NAAM . ' ' . \\$pers->_SAL_NAAM;",
+				"}",
+				"$personalno[$pers->_SAL_VERWYS] = $pers->_SAL_NAAM . ' ' . $pers->_SAL_1STE_NAAM;",
+		"}",
+		"}",
+
+		],
+		"description": "all salmees info with them vacant  posistions"
+
+	},
+
+	"Salmeessomesstuff":{
+
+		"prefix": "Salmeessomesstuff",
+		"body": [
+		"require_once \\$_SERVER['DOCUMENT_ROOT'] . '/SERVICES/SALMEES/srv_sal_001_S_srv.php';",
+		"\\$POSTE = \\$SALMEES->krySalmeesPersnommer(\\$value);",
+		"foreach (\\$POSTE as \\$pers => \\$value) {",
+		"\\$naam = \\$pers->_SAL_NOEM_NAAM . ' ' . \\$pers->_SAL_NAAM;",
+				"if (\\$pers->_SAL_NOEM_NAAM == '') {",
+					"\\$naam = \\$pers->_SAL_1STE_NAAM . ' ' . \\$pers->_SAL_NAAM;",
+				"}",
+				"$personalno[$pers->_SAL_VERWYS] = $pers->_SAL_NAAM . ' ' . $pers->_SAL_1STE_NAAM;",
+		"}",
+		],
+		"description": "specifc salmees info"
+	},
+	"SalmeesDept":{
+
+		"prefix": "SalmeesDept",
+		"body": [
+		"require_once \\$_SERVER['DOCUMENT_ROOT'] . '/SERVICES/SALMEES/srv_sal_001_S_srv.php';",
+		"\\$POSTE = \\$SALMEES->krySalmeesDept(\\$_SESSION['dept']);",
+		"foreach (\\$POSTE as \\$pers => \\$value) {",
+		"\\$naam = \\$pers->_SAL_NOEM_NAAM . ' ' . \\$pers->_SAL_NAAM;",
+				"if (\\$pers->_SAL_NOEM_NAAM == '') {",
+					"\\$naam = \\$pers->_SAL_1STE_NAAM . ' ' . \\$pers->_SAL_NAAM;",
+				"}",
+				"$personalno[$pers->_SAL_VERWYS] = $pers->_SAL_NAAM . ' ' . $pers->_SAL_1STE_NAAM;",
+		"}",
+		],
+		"description": "specifc salmees info"
+	},
+	// "Takmees":{
+
+	// },
+	//
+	"Radio buttons": {
+		"prefix": "nwk-radio",
+		"body": [
+			"<div class=\"cell\"><?php echo \\$$control_name?></div>",
+			"<div class=\"cell\"><?php echo \\$label_$control_name?></div>"
+		],
+		"description": "Create html for radio buttons"
+	},
+	"Local loading spinner": {
+		"prefix": "nwk-loading-local",
+		"body": [
+			"<div class=\"col-sm-$sm col-md-$md col-lg-$lg $loading_class\">",
+			"\t<div align=\"center\">",
+			"\t\t<span class=\"fa fa-circle-o-notch fa-spin fa-lg\"></span>  <i><?php echo \\$translation->getValue('lblVerwerking');?></i>",
+			"\t</div>",
+			"</div>",
+		],
+		"description": "A local loading spinner"
+	},
+	"Checkbox": {
+		"prefix": "nwk-checkbox",
+		"body": [
+			"<div class=\"cell\"><?php echo ${1:control_name}_${2:value};?></div>"
+		],
+		"description": "Create html for checkbox"
+	},
+	"Datagrid iframe": {
+		"prefix": "nwk-datagrid-iframe",
+		"body": [
+			"<iframe id=\"$id\" style=\"width: 100%; display: none\"></iframe>"
+		],
+		"description": "Create and hide datagrid in iframe"
+	},
+	"Datagrid": {
+		"prefix": "nwk-datagrid",
+		"body": [
+			"<div class=\"container-fluid\">",
+			"\t<div class=\"row\">",
+			"\t\t<div class=\"col-sm-12 col-md-12 col-lg-12\">",
+			"\t\t\t<i style=\"float: right; color: #AFAFAF; padding-right: 10px\" class=\"fa fa-info-circle\" title=\"",
+			"PHP:",
+			"$php_programs",
+			"",
+			"NATURAL:",
+			"$natural_progams",
+			"",
+			"WSDL:",
+			"$wsdl\">",
+			"\t\t\t</i>",
+			"\t\t\t<br>",
+			"\t\t\t<div align=\"center\">",
+			"\t\t\t\t<table id=\"$datagrid_id\"></table>",
+			"\t\t\t</div>",
+			"\t\t\t<div id=\"$toolbar_id\">",
+			"\t\t\t</div>",
+			"\t\t</div>",
+			"\t</div>",
+			"</div>"
+		],
+		"description": "Create html for datagrid"
+	},
+	"php Email": {
+		"prefix": "phpmailer_Email",
+		"body": [
+			"require_once($$_SERVER['DOCUMENT_ROOT'] . '/nwk/PHPMailer6/vendor/autoload.php');",
+			"$$mail = new PHPMailer();",
+			"$$mail->Subject = \"Contract has been updated\";",
+			"$$Body = \"\";",
+			"$require_once($$_SERVER['DOCUMENT_ROOT'] . '/nwk/TCPDF-master/tcpdf.php');",
+			"$$html .= '</table>';",
+			"$$Body = $Body . \" \" . $$html;",
+			"$$mail->AddAddress($$emails4);",
+			"$$mail->IsSMTP();",
+			"$$mail->Host = \"imap.nwk.co.za\";",
+			"$$mail->SMTPAuth = true;",
+			"$$mail->Username = \"noreplyit\";",
+			"$$mail->Password = \"norep\";",
+			"$$mail->From  = 'noreplyit@nwk.co.za';",
+			"$$mail->FromName  = 'Central Contract';",
+			"$$mail->Body    = $$Body;",
+			"$$mail->IsHTML(true);",
+			"$$mail->Send();"
+		],
+		"description": "Add email basics"
+	},
+	"Replace_Ampersand": {
+		"prefix": "nwk-ampersand",
+		"body": [
+			"$$var = str_replace('&', '', $$var);",
+		],
+		"description": "Haal ampersand uit "
+	},
+}
